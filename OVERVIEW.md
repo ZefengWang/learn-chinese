@@ -1,64 +1,42 @@
-# 中文学习网站 · 内容大纲总览
+# 中文学习网站 · 大纲总览
 
 ## 目标用户（5 大语系）
 
-| 群体 | 母语代表 | 核心难点 |
-|------|----------|----------|
-| 🇬🇧 英语系 | 英语 | 声调、zh/ch/sh、汉字系统 |
-| 🇯🇵 日语系 | 日语 | 语序反转 SOV→SVO、送气音、简体字 |
-| 🇰🇷 韩语系 | 韩语 | 语序反转、送气音、敬语逻辑差异 |
-| 🌏 东南亚 | 泰/越/印尼/马 | 汉字系统、后鼻音、把字句 |
-| 🇪🇺 欧洲 | 法/德/西/意/俄 | 声调、汉字、无冠词/复数体系不适应 |
-
-> 详细画像见 `learner-profiles.md`
-
-## 双轨学习目标
-
-| 路径 | 目标 | 内容来源 |
+| 群体 | 母语 | 核心难点 |
 |------|------|----------|
-| **📚 HSK 考试轨** | 过级拿证（留学/工作/签证）| HSK 1-3 标准词表 + 模拟题 |
-| **🌍 生存日常轨** | 落地能用（旅游/短期工作）| 12 个实用场景 + 文化贴士 |
+| 英语系 | 英语 | 声调、zh/ch/sh、汉字 |
+| 日语系 | 日语 | 语序反转、送气音、简体字 |
+| 韩语系 | 韩语 | 语序反转、送气音、敬语 |
+| 东南亚 | 泰/越/印尼 | 汉字、后鼻音、把字句 |
+| 欧洲 | 法/德/西 | 声调、汉字、无冠词/复数 |
 
-> 两条轨共享基础发音/汉字/词汇模块，在语法和练习上分叉。适配策略见 `adaption-strategy.md`
+## 双轨目标
 
-## 设计原则
+| 路径 | 目标 | 来源 |
+|------|------|------|
+| HSK 考试轨 | 拿证 | HSK 1-3 词表 + 模拟题 |
+| 生存日常轨 | 落地能用 | 12 场景 + 文化贴士 |
 
-- **实用优先**：先教能用上的，再教理论
-- **听说先行**：开口比认字重要
-- **母语适配**：根据用户注册时选的母语，动态展示易错点和对比练习
-- **HSK 对齐**：难度与 HSK 1-3 级对应，便于后续扩展到 4-6 级
+设计原则：实用优先 · 听说先行 · 母语适配 · HSK 对齐
 
-## 学习路径（Foundation → Survival → Conversational）
+## 学习路径
 
-| 阶段 | HSK | 字量 | 核心产出 |
-|------|-----|------|----------|
-| Foundation | 1 | 150 | 能打招呼、自我介绍、问基本信息 |
-| Survival | 2 | 300 | 能应对点餐、问路、购物等日常场景 |
-| Conversational | 3 | 600 | 能日常话题对话、读懂简单文章 |
+Foundation(HSK1,150 字) → Survival(HSK2,300 字) → Conversational(HSK3,600 字)
 
-## 内容模块（9 个）
-
-1. **Pinyin** — 拼音与声调（Foundation 核心）
-2. **Characters** — 汉字入门：笔顺、结构、偏旁
-3. **Grammar** — 核心语法点，多语对比
-4. **Vocabulary** — 高频词 + 场景词汇表
-5. **Listening & Speaking** — 发音练习 + 对话模拟
-6. **Scenarios** — 12 个实用场景（生存级）
-7. **Culture Notes** — 每个场景嵌入文化背景
-8. **Learner Profiles** — 5 类学习者画像与差异
-9. **Adaption Strategy** — 多母语适配 + 双轨实现方案
-
-## 文档清单
+## 文档清单（13 个）
 
 ```
-OVERVIEW.md              ← 你现在在看的
-learner-profiles.md      ← 8. 各母语群体优势难点对照表
-adaption-strategy.md     ← 9. 多母语适配 + 双轨学习路径实现
-pinyin.md                ← 1. 拼音（含各群体发音难点）
-characters.md            ← 2. 汉字
-grammar.md               ← 3. 语法（含多语对比表）
-vocabulary.md            ← 4. 词汇
-listening-speaking.md    ← 5. 听说
-scenarios.md             ← 6. 实用场景
-culture.md               ← 7. 文化
+OVERVIEW.md              ← 总览
+learner-profiles.md      ← 群体优势难点对照
+learner-insights.md      ← 汉字差异 + 关键洞察
+adaption-strategy.md     ← 多母语界面 + 动态适配
+dual-tracks.md           ← 双轨学习路径
+pinyin.md                ← 拼音
+characters.md            ← 汉字
+grammar.md               ← 核心语法点
+grammar-multilingual.md  ← 5 语语法对比
+vocabulary.md            ← 词汇
+listening-speaking.md    ← 听说
+scenarios.md             ← 实用场景
+culture.md               ← 文化
 ```
