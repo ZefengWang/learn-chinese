@@ -26,7 +26,7 @@ window.Data_initials = [
   { id: 'sh', text: 'shi', pinyin: 'shi', meaning: '诗' },
   { id: 'r',  text: 'ri',  pinyin: 'ri',  meaning: '日' },
   { id: 'z',  text: 'zi',  pinyin: 'zi',  meaning: '资' },
-  { id: 'c',  text: 'ci',  pinyin: 'ci',  meaning: '雌' },
+  { id: 'c',  text: 'ci',  pinyin: 'ci',  meaning: '呲' },
   { id: 's',  text: 'si',  pinyin: 'si',  meaning: '思' },
   { id: 'y',  text: 'yi',  pinyin: 'yi',  meaning: '一' },
   { id: 'w',  text: 'wu',  pinyin: 'wu',  meaning: '乌' },

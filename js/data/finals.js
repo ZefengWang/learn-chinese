@@ -3,13 +3,13 @@
  * 标注规则：text/pinyin 一律不带声调（和 initials 统一）
  */
 window.Data_finals = [
-  // 单元音 6
+  // 单元音 6 — 示范字选最能体现韵母本身发音的
   { id: 'a',   text: 'a',    pinyin: 'a',    meaning: '啊' },
-  { id: 'o',   text: 'o',    pinyin: 'o',    meaning: '哦' },
+  { id: 'o',   text: 'o',    pinyin: 'o',    meaning: '喔' },
   { id: 'e',   text: 'e',    pinyin: 'e',    meaning: '呃' },
   { id: 'i',   text: 'i',    pinyin: 'i',    meaning: '衣' },
   { id: 'u',   text: 'u',    pinyin: 'u',    meaning: '乌' },
-  { id: 'ü',   text: 'ü',    pinyin: 'ü',    meaning: '鱼' },
+  { id: 'ü',   text: 'ü',    pinyin: 'ü',    meaning: '淤' },
   // 复韵母 9
   { id: 'ai',  text: 'ai',   pinyin: 'ai',   meaning: '爱' },
   { id: 'ei',  text: 'ei',   pinyin: 'ei',   meaning: '诶' },
