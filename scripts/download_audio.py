@@ -24,8 +24,8 @@ BAIDU_TTS = 'https://fanyi.baidu.com/gettts?lan=zh&text={text}&spd={spd}&source=
 
 # 各分组语速配置（1-9，9最快）
 GROUP_SPD = {
-    'initials':   7,   # 快语速 → 像轻声示范
-    'finals':     5,   # 中速
+    'initials':   3,   # 快语速 → 像轻声示范
+    'finals':     3,   # 中速
     'tones':      3,   # 默认
     'characters': 3,
     'scenes':     3,
@@ -38,7 +38,12 @@ def first_hanzi(s: str) -> str:
 
 def extract_speak_text(group: str, item: dict) -> str:
     if group in ('initials', 'finals'):
-        return first_hanzi(item.get('meaning', ''))
+        # 直接用纯拼音让 TTS 读，避免汉字自带声调！
+        # 百度 TTS 输入 "fo" 会读轻声 fo，输入 "佛" 会读二声 fó
+        raw = item.get('pinyin', item.get('text', ''))
+        # 拼音规范化：ü 字母替换为 yu，TTS 才能正确发音
+        # ü 单韵母 = yu (迂), üe = yue, ün = yun
+        return raw.replace('ü', 'yu')
     elif group == 'tones':
         return first_hanzi(item.get('text', ''))
     elif group == 'characters':
