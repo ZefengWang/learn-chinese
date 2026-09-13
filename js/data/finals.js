@@ -1,34 +1,34 @@
 /**
  * 韵母语料（24 个）
- * 单元音 6 + 复韵母 9 + 前鼻 5 + 后鼻 4
+ * 标注规则：text/pinyin 一律不带声调（和 initials 统一）
  */
 window.Data_finals = [
-  // 单元音
-  { id: 'a',   text: 'ā',    pinyin: 'ā',    meaning: '啊 / a' },
-  { id: 'o',   text: 'ō',    pinyin: 'ō',    meaning: '哦 / o' },
-  { id: 'e',   text: 'ē',    pinyin: 'ē',    meaning: '呃 / e' },
-  { id: 'i',   text: 'ī',    pinyin: 'ī',    meaning: '衣 / i' },
-  { id: 'u',   text: 'ū',    pinyin: 'ū',    meaning: '乌 / u' },
-  { id: 'ü',   text: 'ǖ',    pinyin: 'ǖ',    meaning: '鱼 / ü' },
-  // 复韵母
-  { id: 'ai',  text: 'āi',   pinyin: 'āi',   meaning: '爱 / ai' },
-  { id: 'ei',  text: 'ēi',   pinyin: 'ēi',   meaning: '诶 / ei' },
-  { id: 'ui',  text: 'wēi',  pinyin: 'wēi',  meaning: '微 / ui' },
-  { id: 'ao',  text: 'āo',   pinyin: 'āo',   meaning: '凹 / ao' },
-  { id: 'ou',  text: 'ōu',   pinyin: 'ōu',   meaning: '欧 / ou' },
-  { id: 'iu',  text: 'yōu',  pinyin: 'yōu',  meaning: '优 / iu' },
-  { id: 'ie',  text: 'yē',   pinyin: 'yē',   meaning: '耶 / ie' },
-  { id: 'üe',  text: 'yuē',  pinyin: 'yuē',  meaning: '约 / üe' },
-  { id: 'er',  text: 'ér',   pinyin: 'ér',   meaning: '儿 / er' },
-  // 前鼻
-  { id: 'an',  text: 'ān',   pinyin: 'ān',   meaning: '安 / an' },
-  { id: 'en',  text: 'ēn',   pinyin: 'ēn',   meaning: '恩 / en' },
-  { id: 'in',  text: 'yīn',  pinyin: 'yīn',  meaning: '音 / in' },
-  { id: 'un',  text: 'wēn',  pinyin: 'wēn',  meaning: '温 / un' },
-  { id: 'ün',  text: 'yūn',  pinyin: 'yūn',  meaning: '晕 / ün' },
-  // 后鼻
-  { id: 'ang', text: 'āng',  pinyin: 'āng',  meaning: '昂 / ang' },
-  { id: 'eng', text: 'ēng',  pinyin: 'ēng',  meaning: '嗯 / eng' },
-  { id: 'ing', text: 'yīng', pinyin: 'yīng', meaning: '英 / ing' },
-  { id: 'ong', text: 'wēng', pinyin: 'wēng', meaning: '翁 / ong' },
+  // 单元音 6
+  { id: 'a',   text: 'a',    pinyin: 'a',    meaning: '啊' },
+  { id: 'o',   text: 'o',    pinyin: 'o',    meaning: '哦' },
+  { id: 'e',   text: 'e',    pinyin: 'e',    meaning: '呃' },
+  { id: 'i',   text: 'i',    pinyin: 'i',    meaning: '衣' },
+  { id: 'u',   text: 'u',    pinyin: 'u',    meaning: '乌' },
+  { id: 'ü',   text: 'ü',    pinyin: 'ü',    meaning: '鱼' },
+  // 复韵母 9
+  { id: 'ai',  text: 'ai',   pinyin: 'ai',   meaning: '爱' },
+  { id: 'ei',  text: 'ei',   pinyin: 'ei',   meaning: '诶' },
+  { id: 'ui',  text: 'ui',   pinyin: 'ui',   meaning: '微' },
+  { id: 'ao',  text: 'ao',   pinyin: 'ao',   meaning: '凹' },
+  { id: 'ou',  text: 'ou',   pinyin: 'ou',   meaning: '欧' },
+  { id: 'iu',  text: 'iu',   pinyin: 'iu',   meaning: '优' },
+  { id: 'ie',  text: 'ie',   pinyin: 'ie',   meaning: '耶' },
+  { id: 'üe',  text: 'üe',   pinyin: 'üe',   meaning: '约' },
+  { id: 'er',  text: 'er',   pinyin: 'er',   meaning: '儿' },
+  // 前鼻 5
+  { id: 'an',  text: 'an',   pinyin: 'an',   meaning: '安' },
+  { id: 'en',  text: 'en',   pinyin: 'en',   meaning: '恩' },
+  { id: 'in',  text: 'in',   pinyin: 'in',   meaning: '音' },
+  { id: 'un',  text: 'un',   pinyin: 'un',   meaning: '温' },
+  { id: 'ün',  text: 'ün',   pinyin: 'ün',   meaning: '晕' },
+  // 后鼻 4
+  { id: 'ang', text: 'ang',  pinyin: 'ang',  meaning: '昂' },
+  { id: 'eng', text: 'eng',  pinyin: 'eng',  meaning: '嗯' },
+  { id: 'ing', text: 'ing',  pinyin: 'ing',  meaning: '英' },
+  { id: 'ong', text: 'ong',  pinyin: 'ong',  meaning: '翁' },
 ];
