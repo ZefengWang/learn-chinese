@@ -235,9 +235,9 @@ runner.describe('JS 文件完整性', () => {
     assert(fs.existsSync(path.join(jsDir, 'app.js'))).true();
   });
 
-  runner.it('js/data/ 应包含 7 个文件（initials/finals/tones/characters/scenes/minimal + index）', () => {
+  runner.it('js/data/ 应包含 8 个文件（initials/finals/tones/characters/scenes/minimal + index + augment）', () => {
     const files = fs.readdirSync(path.join(jsDir, 'data'));
-    assert(files.length).eq(7, `应有 7 个数据文件，实际 ${files.length}: ${files.join(',')}`);
+    assert(files.length).eq(8, `应有 7 个数据文件，实际 ${files.length}: ${files.join(',')}`);
   });
 
   runner.it('js/services/ 应包含 speech.js 和 storage.js', () => {
