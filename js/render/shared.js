@@ -19,9 +19,10 @@
     });
   }
 
-  // Nav：分组导航（绝对路径，适配子页面）
   function renderNav(container, currentKey) {
-    const base = (location.pathname.includes('pages/')) ? '../' : '';
+    // 判断当前在 pages/ 子页还是首页，自适应路径
+    const inSubPage = location.pathname.includes('/pages/');
+    const base = inSubPage ? '../' : '';
     const keys = DataLoader.getAllKeys();
     container.innerHTML = keys.map(key => {
       const g = DataLoader.GROUPS[key];
