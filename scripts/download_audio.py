@@ -2,48 +2,55 @@
 """
 批量下载中文发音 MP3（百度翻译 TTS），存入 audio/<group>/<id>.mp3
 
+语速配置（GROUP_SPD）：
+  initials: 9 — 快语速，发音短而轻，像教材里的声母轻声示范
+  finals:   5 — 中速
+  其他:     3 — 默认
+
 发音文本提取策略：
-  initials/finals — 从 meaning 提取第一个汉字（"波 / bo" → "波"）
-  tones          — 从 text 提取汉字（"mā 妈" → "妈"）
-  characters     — text 就是汉字，直接用
-  scenes         — text 就是完整句子，直接用
-  minimal        — text 是对比句（"知道 / 资道"），直接整条读
+  initials/finals — 从 meaning 提取第一个汉字
+  tones/characters — 从 text 提取汉字
+  scenes/minimal  — text 整条读
 
 用法：python3 scripts/download_audio.py
 """
-import json, os, re, sys, urllib.request, urllib.parse, time, pathlib
+import json, os, re, sys, urllib.request, urllib.parse, time, pathlib, subprocess
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 AUDIO_DIR = ROOT / 'audio'
 JS_DATA_DIR = ROOT / 'js' / 'data'
 
-BAIDU_TTS = 'https://fanyi.baidu.com/gettts?lan=zh&text={text}&spd=3&source=web'
+BAIDU_TTS = 'https://fanyi.baidu.com/gettts?lan=zh&text={text}&spd={spd}&source=web'
 
-# 从字符串里提取第一个中文字
+# 各分组语速配置（1-9，9最快）
+GROUP_SPD = {
+    'initials':   7,   # 快语速 → 像轻声示范
+    'finals':     5,   # 中速
+    'tones':      3,   # 默认
+    'characters': 3,
+    'scenes':     3,
+    'minimal':    3,
+}
+
 def first_hanzi(s: str) -> str:
-    m = re.search(r'[\u4e00-\u9fff]', s)
+    m = re.search(r'[\u4e00-\u9fff]', s or '')
     return m.group() if m else ''
 
 def extract_speak_text(group: str, item: dict) -> str:
-    """返回应该被用来合成发音的汉字/中文句子"""
     if group in ('initials', 'finals'):
-        # meaning 字段形如 "波 / bo"，提取第一个汉字
         return first_hanzi(item.get('meaning', ''))
     elif group == 'tones':
-        # text 形如 "mā 妈"，提取第一个汉字
         return first_hanzi(item.get('text', ''))
     elif group == 'characters':
-        # text 就是汉字
         return item.get('text', '')
     elif group == 'scenes':
         return item.get('text', '')
     elif group == 'minimal':
-        # text 形如 "知道 / 资道"，整条读出来
         return item.get('text', '').replace(' / ', '')
     return ''
 
-def download_one(text: str, out_path: pathlib.Path) -> bool:
-    url = BAIDU_TTS.format(text=urllib.parse.quote(text))
+def download_one(text: str, out_path: pathlib.Path, spd: int = 3) -> bool:
+    url = BAIDU_TTS.format(text=urllib.parse.quote(text), spd=spd)
     req = urllib.request.Request(url, headers={
         'User-Agent': 'Mozilla/5.0 Chrome/120',
         'Referer': 'https://fanyi.baidu.com/',
@@ -51,7 +58,7 @@ def download_one(text: str, out_path: pathlib.Path) -> bool:
     try:
         with urllib.request.urlopen(req, timeout=10) as resp:
             data = resp.read()
-        if len(data) < 500:  # 太短说明是错误响应
+        if len(data) < 500:
             return False
         out_path.parent.mkdir(parents=True, exist_ok=True)
         out_path.write_bytes(data)
@@ -62,14 +69,6 @@ def download_one(text: str, out_path: pathlib.Path) -> bool:
 
 def load_data(group: str) -> list:
     fp = JS_DATA_DIR / f'{group}.js'
-    src = fp.read_text(encoding='utf-8')
-    # 把 window.Data_xxx = [...] 转换成合法的 JS 表达式并 eval
-    prefix = f'window.Data_{group} = '
-    if prefix not in src:
-        raise ValueError(f'找不到 {prefix} 在 {fp}')
-    expr = src.split(prefix, 1)[1].rsplit(';', 1)[0]
-    # 用 Node 跑一下拿到 JSON
-    import subprocess
     node = subprocess.run(
         ['node', '-e',
          f"const vm=require('vm');const ctx={{window:{{}}}};ctx.window=ctx;vm.createContext(ctx);"
@@ -84,13 +83,12 @@ def load_data(group: str) -> list:
 def main():
     AUDIO_DIR.mkdir(exist_ok=True)
     groups = ['initials', 'finals', 'tones', 'characters', 'scenes', 'minimal']
-    total_ok = 0
-    total_fail = 0
-    total_skip = 0
+    total_ok = total_fail = total_skip = 0
 
     for group in groups:
         items = load_data(group)
-        print(f'\n=== {group} ({len(items)} 条) ===')
+        spd = GROUP_SPD.get(group, 3)
+        print(f'\n=== {group} ({len(items)} 条, spd={spd}) ===')
         ok = fail = skip = 0
         for item in items:
             speak_text = extract_speak_text(group, item)
@@ -106,11 +104,11 @@ def main():
                 continue
 
             print(f'  DL    {item["id"]}  → {speak_text}')
-            if download_one(speak_text, out):
+            if download_one(speak_text, out, spd):
                 ok += 1; total_ok += 1
             else:
                 fail += 1; total_fail += 1
-            time.sleep(0.15)  # 对百度客气点
+            time.sleep(0.15)
 
         print(f'  本组合计: OK={ok}  FAIL={fail}  SKIP={skip}')
 
