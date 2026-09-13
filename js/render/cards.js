@@ -38,6 +38,8 @@
         text: card.dataset.hanzi || card.textContent, // fallback
       };
 
+      // 每次点击前清掉所有 playing 状态（快速切卡时上一个可能还没 onend）
+      document.querySelectorAll('.playing').forEach(el => el.classList.remove('playing'));
       card.classList.add('playing');
       Speech.playItem(item, {
         rate,

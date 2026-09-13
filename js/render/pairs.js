@@ -44,6 +44,7 @@
       if (pairItem) {
         // 单个 pair-item —— 读左边或右边的汉字（Web Speech fallback）
         const hanzi = pairItem.dataset.hanzi;
+        document.querySelectorAll('.playing').forEach(el => el.classList.remove('playing'));
         pairItem.classList.add('playing');
         Speech.speak(hanzi, { rate, onend: () => pairItem.classList.remove('playing') });
         return;
@@ -75,6 +76,8 @@
             },
           });
         };
+        // 每次点击前清掉所有 playing 状态
+        document.querySelectorAll('.playing').forEach(el => el.classList.remove('playing'));
         pair.classList.add('playing');
         playOnce();
       }
