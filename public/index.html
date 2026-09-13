@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>中文发音语料库 · Chinese Pronunciation Lab</title>
+  <meta name="description" content="免费中文发音训练工具：声母、韵母、声调、常用字、场景句子、最小对立体，点击即听，支持 5 种母语学习者">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔊</text></svg>">
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <h1>🔊 中文发音语料库</h1>
+    <p>Chinese Pronunciation Lab · 点击任意卡片听发音</p>
+    <span id="voice-badge" class="voice-badge">⏳ 加载中文音色…</span>
+  </header>
+
+  <!-- Controls -->
+  <div class="controls">
+    <div class="rate-control">
+      <span>🐢 慢</span>
+      <input type="range" id="rate" min="0.4" max="1.4" step="0.1" value="0.8">
+      <span>🐇 快</span>
+      <span id="rate-label">0.8x</span>
+    </div>
+    <button id="stop-btn" class="stop-btn">⏹ 停止（空格）</button>
+  </div>
+
+  <!-- Nav -->
+  <nav id="nav" aria-label="语料分类"></nav>
+
+  <!-- Group Header -->
+  <div class="group-header">
+    <h2 id="group-title"></h2>
+    <p id="group-desc"></p>
+  </div>
+
+  <!-- Cards Container -->
+  <main id="cards"></main>
+
+  <!-- Footer -->
+  <footer style="text-align:center;padding:24px;color:#999;font-size:12px;">
+    Powered by Web Speech API · 纯静态 · 零依赖 · open source
+  </footer>
+
+  <!-- Scripts (按依赖顺序) -->
+  <script src="js/corpus.js"></script>
+  <script src="js/speech.js"></script>
+  <script src="js/main.js"></script>
+
+</body>
+</html>
