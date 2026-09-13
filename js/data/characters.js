@@ -37,7 +37,7 @@ window.Data_characters = [
   { id: 'qi',  text: '七', pinyin: 'qī',  meaning: 'seven' },
   { id: 'ba',  text: '八', pinyin: 'bā',  meaning: 'eight' },
   { id: 'jiu', text: '九', pinyin: 'jiǔ', meaning: 'nine' },
-  { id: 'shi', text: '十', pinyin: 'shí', meaning: 'ten' },
+  { id: 'shi2', text: '十', pinyin: 'shí', meaning: 'ten' },
   // 时间
   { id: 'tian',text: '天', pinyin: 'tiān',meaning: 'sky / day' },
   { id: 'jin', text: '今', pinyin: 'jīn', meaning: 'today' },
