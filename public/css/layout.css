@@ -1,0 +1,130 @@
+/* ===== layout.css · Header + Nav + Controls ===== */
+
+/* Header */
+.site-header {
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+}
+.site-header h1 { font-size: 22px; font-weight: 700; letter-spacing: 2px; }
+.site-header p { font-size: 13px; opacity: 0.85; margin-top: 4px; }
+
+.voice-badge {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 4px 12px;
+  background: rgba(255,255,255,0.2);
+  border-radius: 12px;
+  font-size: 12px;
+  opacity: 0.5;
+}
+.voice-badge.ready { opacity: 1; }
+
+/* Controls */
+.controls {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 14px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  border-bottom: 1px solid var(--border);
+}
+.rate-control {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--text-dim);
+}
+.rate-control input[type=range] {
+  width: 100px;
+  accent-color: var(--primary);
+}
+.stop-btn {
+  padding: 6px 14px;
+  border: 1px solid var(--border);
+  background: #fff;
+  border-radius: 6px;
+  font-size: 13px;
+  transition: all 0.2s;
+}
+.stop-btn:hover {
+  background: #ffebee;
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+/* Nav */
+.site-nav {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 12px 12px 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+}
+.nav-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 10px 14px;
+  border: 1px solid var(--border);
+  background: #fff;
+  border-radius: var(--radius);
+  text-decoration: none;
+  color: var(--text);
+  transition: all 0.15s;
+  min-width: 68px;
+}
+.nav-btn:hover { border-color: var(--primary); transform: translateY(-1px); }
+.nav-btn.active,
+.nav-btn:hover {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #fff;
+}
+.nav-icon { font-size: 18px; }
+.nav-label { font-size: 11px; font-weight: 500; }
+
+/* Group Header */
+.group-header {
+  max-width: 900px;
+  margin: 16px auto 4px;
+  padding: 0 20px;
+}
+.group-header h2 { font-size: 17px; }
+.group-header p { font-size: 12px; color: var(--text-dim); margin-top: 2px; }
+
+/* Main container */
+.site-main {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 8px 20px 60px;
+}
+
+footer {
+  text-align: center;
+  padding: 20px;
+  color: #bbb;
+  font-size: 11px;
+}
+
+/* 首页 intro */
+.home-intro {
+  max-width: 600px;
+  margin: 40px auto 20px;
+  text-align: center;
+  padding: 30px 20px;
+  background: #fff;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+}
+.home-intro h2 { font-size: 20px; margin-bottom: 12px; }
+.home-intro ul { text-align: left; display: inline-block; font-size: 13px; color: var(--text-dim); }
+.home-intro li { margin: 4px 0; }

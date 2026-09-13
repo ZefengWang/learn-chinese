@@ -1,0 +1,96 @@
+/* ===== pairs.css · 最小对立体 ===== */
+
+.pairs-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.pair {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px;
+  position: relative;
+}
+.pair-contrast {
+  position: absolute;
+  top: -8px;
+  left: 14px;
+  background: var(--accent);
+  color: #333;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.pair-items {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 2px;
+}
+.pair-item {
+  flex: 1;
+  text-align: center;
+  padding: 10px;
+  border: 1px dashed var(--border);
+  border-radius: 8px;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.15s;
+}
+.pair-item:hover { border-color: var(--primary); background: #fff8f0; }
+.pair-item.playing { background: #fff3e0; border-color: var(--primary); }
+.pair-item .play-btn {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 20px;
+  height: 20px;
+  border: none;
+  background: #f5f5f5;
+  border-radius: 50%;
+  font-size: 11px;
+}
+
+.pair-py { font-size: 11px; color: var(--text-dim); font-family: monospace; }
+.pair-text { font-size: 20px; font-weight: 600; margin-top: 2px; }
+
+.vs {
+  font-weight: 700;
+  color: var(--primary);
+  font-size: 12px;
+}
+
+.pair-play-all {
+  display: block;
+  margin: 10px auto 0;
+  padding: 4px 14px;
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 12px;
+  transition: background 0.2s;
+}
+.pair-play-all:hover { background: var(--primary-dark); }
+
+.pair-meaning {
+  text-align: center;
+  font-size: 11px;
+  color: var(--text-dim);
+  margin-top: 6px;
+  font-style: italic;
+}
+
+/* 响应式 */
+@media (max-width: 480px) {
+  .cards-grid { grid-template-columns: repeat(auto-fill, minmax(90px, 1fr)); gap: 8px; }
+  .card { padding: 12px 6px 10px; }
+  .card-text { font-size: 22px; }
+  .nav-btn { padding: 8px 8px; min-width: 56px; }
+  .nav-label { font-size: 10px; }
+}

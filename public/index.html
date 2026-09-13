@@ -4,51 +4,69 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>中文发音语料库 · Chinese Pronunciation Lab</title>
-  <meta name="description" content="免费中文发音训练工具：声母、韵母、声调、常用字、场景句子、最小对立体，点击即听，支持 5 种母语学习者">
-  <link rel="stylesheet" href="styles.css">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔊</text></svg>">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
 </head>
 <body>
 
-  <!-- Header -->
-  <header>
+  <header class="site-header">
     <h1>🔊 中文发音语料库</h1>
     <p>Chinese Pronunciation Lab · 点击任意卡片听发音</p>
     <span id="voice-badge" class="voice-badge">⏳ 加载中文音色…</span>
   </header>
 
-  <!-- Controls -->
-  <div class="controls">
-    <div class="rate-control">
-      <span>🐢 慢</span>
-      <input type="range" id="rate" min="0.4" max="1.4" step="0.1" value="0.8">
-      <span>🐇 快</span>
-      <span id="rate-label">0.8x</span>
-    </div>
-    <button id="stop-btn" class="stop-btn">⏹ 停止（空格）</button>
+  <div class="controls" id="controls"></div>
+
+  <nav class="site-nav" id="nav"></nav>
+
+  <div class="home-intro">
+    <h2>开始练习</h2>
+    <ul>
+      <li>🔤 <strong>声母 23 个</strong> — 针对日/韩的送气音难点</li>
+      <li>🔡 <strong>韵母 24 个</strong> — 重点练后鼻音 -ng</li>
+      <li>🎵 <strong>四声对比</strong> — 红/绿/蓝/紫一眼看清</li>
+      <li>📝 <strong>HSK 1 常用字</strong> — 34 个高频字</li>
+      <li>💬 <strong>场景句子</strong> — 打招呼/点餐/问路…</li>
+      <li>⚡ <strong>最小对立体</strong> — zh/z、b/p、n/l 精准突破</li>
+    </ul>
   </div>
 
-  <!-- Nav -->
-  <nav id="nav" aria-label="语料分类"></nav>
+  <footer>纯静态 · 零依赖 · Web Speech API</footer>
 
-  <!-- Group Header -->
-  <div class="group-header">
-    <h2 id="group-title"></h2>
-    <p id="group-desc"></p>
-  </div>
-
-  <!-- Cards Container -->
-  <main id="cards"></main>
-
-  <!-- Footer -->
-  <footer style="text-align:center;padding:24px;color:#999;font-size:12px;">
-    Powered by Web Speech API · 纯静态 · 零依赖 · open source
-  </footer>
-
-  <!-- Scripts (按依赖顺序) -->
-  <script src="js/corpus.js"></script>
-  <script src="js/speech.js"></script>
-  <script src="js/main.js"></script>
+  <!-- JS: data → services → render → app -->
+  <script src="js/data/initials.js"></script>
+  <script src="js/data/finals.js"></script>
+  <script src="js/data/tones.js"></script>
+  <script src="js/data/characters.js"></script>
+  <script src="js/data/scenes.js"></script>
+  <script src="js/data/minimal.js"></script>
+  <script src="js/data/index.js"></script>
+  <script src="js/services/speech.js"></script>
+  <script src="js/services/storage.js"></script>
+  <script src="js/render/shared.js"></script>
+  <script>
+    // 首页特殊：只渲染 header + nav + controls
+    Speech.onReady((voice) => {
+      const badge = document.getElementById('voice-badge');
+      badge.textContent = '🎙 ' + voice.name;
+      badge.classList.add('ready');
+    });
+    if (!Speech.supported) badge.textContent = '❌ 不支持 Web Speech API';
+    const prefs = Prefs.load();
+    RenderShared.renderNav(document.getElementById('nav'), null);
+    RenderShared.renderControls(
+      document.getElementById('controls'),
+      prefs,
+      (rate) => Prefs.save({ ...prefs, rate }),
+      () => { Speech.stop(); document.querySelectorAll('.playing').forEach(el => el.classList.remove('playing')); }
+    );
+    document.addEventListener('keydown', (e) => {
+      if (e.code === 'Space' && !['INPUT','TEXTAREA'].includes(e.target.tagName)) {
+        e.preventDefault(); Speech.stop();
+      }
+    });
+  </script>
 
 </body>
 </html>
